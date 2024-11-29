@@ -2,7 +2,7 @@ package com.bptn.leetcode;
 
 import java.util.Scanner;
 
-public class ChallengeOne {
+public class Challenge1 {
 
 	// Function to calculate the average salary
 	public static double averageSalary(int[] salary) {
