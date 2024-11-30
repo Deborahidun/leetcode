@@ -1,6 +1,6 @@
-package com.bptn.leetcode;
+package com.bptn.leetcode.challenge_4;
 
-public class Challenge2 {
+public class AddTwoNumbers {
 
 	// Static nested class to represent a single node in a linked list
 	static class ListNode {
@@ -40,7 +40,7 @@ public class Challenge2 {
 
 	// Main method for testing
 	public static void main(String[] args) {
-		Challenge2 challenge = new Challenge2();
+		AddTwoNumbers challenge = new AddTwoNumbers();
 
 		// Creating first linked list: 2 -> 4 -> 3 (represents 342)
 		ListNode l1 = new ListNode(2);
