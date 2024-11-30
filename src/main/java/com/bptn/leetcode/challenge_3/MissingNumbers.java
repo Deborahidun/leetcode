@@ -21,10 +21,14 @@ public class MissingNumbers {
 	        return expectedSum - actualSum;
     }
 
-    public static void main(String[] args) {
-    	
+	  public static void main(String[] args) {
+		    MissingNumbers solution = new MissingNumbers();
+		    int[] nums = {3, 0, 1};  
+		    System.out.println("The missing number is: " + solution.missingNumber(nums));
+		}
+
       
         
     }
-}
+
 
