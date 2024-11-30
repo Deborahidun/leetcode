@@ -2,68 +2,71 @@ package com.bptn.leetcode.challenge_4;
 
 public class AddTwoNumbers {
 
-	// Static nested class to represent a single node in a linked list
-	static class ListNode {
-		int val; // integer that holds the value of the node
-		ListNode next; // reference to the next node in the linked list
+    // Definition for singly-linked list.
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-		// Constructor to initialize values
-		ListNode(int val) {
-			this.val = val;
-			this.next = null; // initialize next to null as default
-		}
-	}
+        // Constructors
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
 
-	// Function to add nodes from the two linked lists
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode dummy = new ListNode(0); // a dummy node to store the result list
-		ListNode current = dummy; // a pointer to traverse and build the result list
-		int carry = 0;
+    // Making Solution class static
+    public static class Solution {
+        // Function to add two numbers represented by linked lists
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            // Dummy node to simplify result list construction
+            ListNode dummyHead = new ListNode(0);
+            ListNode current = dummyHead;
+            int carry = 0;
 
-		while (l1 != null || l2 != null || carry != 0) {
-			int sum = carry;
-			if (l1 != null) {
-				sum += l1.val; // Add l1's value to sum if l1 is not null
-				l1 = l1.next;
-			}
-			if (l2 != null) {
-				sum += l2.val; // Add l2's value to sum if l2 is not null
-				l2 = l2.next;
-			}
-			carry = sum / 10;
-			current.next = new ListNode(sum % 10); // Add the new digit as a node
-			current = current.next;
-		}
+            // Traverse through both lists
+            while (l1 != null || l2 != null || carry != 0) {
+                int sum = carry;
 
-		return dummy.next; // Return the newly created list
-	}
+                // Add value from the first list if available
+                if (l1 != null) {
+                    sum += l1.val;
+                    l1 = l1.next;
+                }
 
-	// Main method for testing
-	public static void main(String[] args) {
-		AddTwoNumbers challenge = new AddTwoNumbers();
+                // Add value from the second list if available
+                if (l2 != null) {
+                    sum += l2.val;
+                    l2 = l2.next;
+                }
 
-		// Creating first linked list: 2 -> 4 -> 3 (represents 342)
-		ListNode l1 = new ListNode(2);
-		l1.next = new ListNode(4);
-		l1.next.next = new ListNode(3);
+                // Calculate the carry for the next node
+                carry = sum / 10;
+                // Create new node with sum (mod 10) and move the current pointer
+                current.next = new ListNode(sum % 10);
+                current = current.next;
+            }
 
-		// Creating second linked list: 5 -> 6 -> 4 (represents 465)
-		ListNode l2 = new ListNode(5);
-		l2.next = new ListNode(6);
-		l2.next.next = new ListNode(4);
+            // Return the actual head of the result list (skipping dummyHead)
+            return dummyHead.next;
+        }
+    }
 
-		// Adding two numbers
-		ListNode result = challenge.addTwoNumbers(l1, l2);
+    public static void main(String[] args) {
+        Solution solution = new Solution();
 
-		// Printing the result: 7 -> 0 -> 8 (represents 807)
-		System.out.print("Result: ");
-		while (result != null) {
-			System.out.print(result.val);
-			if (result.next != null) {
-				System.out.print(" -> ");
-			}
-			result = result.next;
-		}
-		System.out.println();
-	}
+        // Example 1: l1 = [2, 4, 3], l2 = [5, 6, 4]
+        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+        ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+
+        // Add the two numbers
+        ListNode result = solution.addTwoNumbers(l1, l2);
+
+        // Print the result list (the sum)
+        System.out.print("Output: ");
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+        
+    }
 }
+
